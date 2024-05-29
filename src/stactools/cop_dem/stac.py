@@ -61,7 +61,7 @@ def create_item(
 
     # resolution in arc seconds (not meters!), which is and 30 for GLO-90 and 10 for GLO-30
     p = re.compile(
-        r"Copernicus_DSM_COG_(?P<res>\d{2})_(?P<northing>[NS]\d{2})_00_(?P<easting>[EW]\d{3})_00_DEM.*"  # noqa: E501
+        r"Copernicus_DSM_(?P<res>\d{2})_(?P<northing>[NS]\d{2})_00_(?P<easting>[EW]\d{3})_00_DEM.*"  # noqa: E501
     )
     if m := p.match(os.path.basename(href)):
         res = m.group("res")
@@ -115,7 +115,7 @@ def create_item(
     assets_auxfiles_dict = dict([
         change_asset_directory(href=href,
                                asset_name=asset,
-                               subdirectory="AUXFILES")
+                               subdirectory="../AUXFILES")
         for asset in assets_auxfiles
     ])
 
@@ -127,7 +127,7 @@ def create_item(
     assets_dict = dict([
         change_asset_directory(href=href,
                                asset_name=asset,
-                               subdirectory="PREVIEW")
+                               subdirectory="../PREVIEW")
         for asset in assets_previews
     ])
 
